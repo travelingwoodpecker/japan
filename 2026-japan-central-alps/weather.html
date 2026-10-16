@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weather &amp; packing — Japan Central Alps by Ninja Tours</title>
+<meta name="description" content="The altitude math for every riding day, and what to actually put in the panniers.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Literata:opsz,wght@7..72,400;7..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&family=Noto+Sans+JP:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F6F5F1;
+  --card:#FFFFFF;
+  --ink:#191A17;
+  --body:#262824;
+  --muted:#6B7069;
+  --rule:#DCDAD2;
+  --pine:#2F5D4E;
+  --pine-dk:#234636;
+  --ochre:#8A6414;
+  --ochre-bg:#F1EEE2;
+  --display:'Fraunces',Georgia,serif;
+  --text:'Literata',Georgia,serif;
+  --ui:'IBM Plex Sans',system-ui,-apple-system,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  --jp:'Noto Sans JP','Hiragino Sans','Yu Gothic',sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{margin:0;background:var(--paper);color:var(--body);
+  font-family:var(--text);font-size:19px;line-height:1.72;-webkit-font-smoothing:antialiased}
+
+/* ---- top bar ---- */
+.topbar{position:sticky;top:0;z-index:40;background:rgba(246,245,241,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+.topbar-in{max-width:1140px;margin:0 auto;display:flex;align-items:center;gap:22px;padding:13px 24px}
+.brand{font-family:var(--display);font-weight:700;font-size:21px;letter-spacing:-.01em;color:var(--ink);white-space:nowrap}
+.nav{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav-chip{flex:0 0 auto;padding:7px 12px;border-radius:20px;text-decoration:none;
+  font-family:var(--mono);font-size:16px;color:var(--muted);transition:background .15s,color .15s}
+.nav-chip:hover,.nav-chip:focus-visible{background:var(--pine);color:#fff}
+
+.nav-rig{font-family:var(--ui);font-weight:600;letter-spacing:.04em}
+
+/* ---- bikes & gear ---- */
+.rig{max-width:1140px;margin:0 auto;padding:56px 24px 10px;border-top:2px solid var(--ink)}
+.rig-head{font-family:var(--display);font-weight:600;font-size:clamp(30px,4.6vw,46px);line-height:1.08;letter-spacing:-.025em;color:var(--ink);margin:0 0 8px}
+.rig-dek{font-size:19px;color:var(--muted);max-width:60ch;margin:0 0 34px}
+.bikes{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:38px}
+@media (max-width:760px){.bikes{grid-template-columns:1fr}}
+.bike{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:26px 26px 22px}
+.bike-role{font-family:var(--ui);font-size:15px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--pine);margin:0 0 10px}
+.bike-name{font-family:var(--display);font-weight:700;font-size:36px;letter-spacing:-.03em;color:var(--ink);margin:0 0 2px;line-height:1}
+.bike-model{font-family:var(--ui);font-size:16px;font-weight:500;color:var(--muted);margin:0 0 18px}
+.spec{border-top:1px solid var(--rule);padding:9px 0;display:flex;justify-content:space-between;gap:16px;align-items:baseline}
+.spec dt{font-family:var(--ui);font-size:15px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0}
+.spec dd{font-family:var(--mono);font-size:17px;color:var(--ink);margin:0;text-align:right}
+.bike-note{font-size:18px;margin:16px 0 0;font-size:17px;line-height:1.6;color:var(--body)}
+.rig-cols{display:grid;grid-template-columns:1fr 1fr;gap:22px 44px;margin-bottom:16px}
+@media (max-width:760px){.rig-cols{grid-template-columns:1fr}}
+
+/* ---- road signs ---- */
+.signs{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:20px;margin:0 0 22px}
+.sign{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:18px 16px;text-align:center}
+.sign svg{width:82px;height:82px;display:block;margin:0 auto 12px}
+.sign svg text{font-family:var(--jp)}
+.sign-jp{font-family:var(--jp);font-size:17px;font-weight:600;color:var(--ink);margin:0 0 1px;line-height:1.3}
+.sign-ro{font-family:var(--mono);font-size:14px;color:var(--muted);margin:0 0 8px}
+.sign-en{font-size:17px;line-height:1.5;color:var(--body);margin:0}
+.grp{font-family:var(--ui);font-size:15px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--pine);margin:32px 0 16px}
+
+/* ---- riding on the left ---- */
+.rule-card{background:var(--pine);color:#fff;border-radius:8px;padding:30px 32px;margin:0 0 34px;max-width:760px}
+.rule-eyebrow{font-family:var(--ui);font-size:15px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#A9C9BB;margin:0 0 12px}
+.rule-big{font-family:var(--display);font-weight:600;font-size:clamp(24px,3.4vw,34px);line-height:1.22;letter-spacing:-.02em;margin:0 0 14px;color:#fff}
+.rule-sub{margin:0;font-size:18px;line-height:1.6;color:#DCE9E3}
+.turns{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:0 0 34px;max-width:760px}
+@media (max-width:680px){.turns{grid-template-columns:1fr}}
+.turn{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:22px 24px}
+.turn h4{font-family:var(--display);font-weight:600;font-size:23px;color:var(--ink);margin:0 0 8px;letter-spacing:-.015em}
+.turn p{margin:0;font-size:19px;line-height:1.6}
+.turn .tag{font-family:var(--mono);font-size:14px;color:var(--pine);display:block;margin-bottom:8px}
+.steps{list-style:none;counter-reset:s;margin:0;padding:0;max-width:66ch}
+.steps li{counter-increment:s;position:relative;padding-left:44px;margin-bottom:18px;font-size:19px}
+.steps li::before{content:counter(s);position:absolute;left:0;top:3px;width:28px;height:28px;border-radius:50%;
+  background:var(--pine);color:#fff;font-family:var(--mono);font-size:14px;display:grid;place-items:center}
+.steps b{color:var(--ink);font-weight:600}
+.hero-wrap{position:relative;overflow:hidden;isolation:isolate}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;z-index:0;display:block}
+.hero-veil{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(105deg,rgba(246,245,241,.95) 0%,rgba(246,245,241,.82) 34%,rgba(246,245,241,.40) 62%,rgba(246,245,241,.18) 100%)}
+.hero-fade{position:absolute;left:0;right:0;bottom:0;height:180px;z-index:1;pointer-events:none;
+  background:linear-gradient(to bottom,rgba(246,245,241,0),rgba(246,245,241,1))}
+.hero{position:relative;z-index:2;max-width:1140px;margin:0 auto;padding:76px 24px 64px}
+h1 .by{display:block;font-size:.52em;font-weight:400;letter-spacing:-.015em;color:var(--pine);margin-top:.14em}
+h1 .by a{color:inherit;text-decoration:none;border-bottom:2px solid rgba(47,93,78,.32);transition:border-color .15s}
+h1 .by a:hover,h1 .by a:focus-visible{border-bottom-color:var(--pine)}
+.kicker{font-family:var(--ui);font-size:18px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--pine);margin:0 0 24px}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(34px,6.2vw,70px);line-height:1;letter-spacing:-.02em;color:var(--ink);margin:0 0 22px}
+.dek{font-size:clamp(20px,2.4vw,26px);line-height:1.5;color:var(--body);max-width:56ch;margin:0 0 26px}
+.chain{font-family:var(--ui);font-size:21px;line-height:1.95;color:var(--muted);max-width:60ch;margin:0}
+.chain b{color:var(--ink);font-weight:600}
+.stats{display:flex;flex-wrap:wrap;gap:14px 40px;margin:0 0 30px;padding:0;border:0}
+.stat dt{font-family:var(--ui);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 5px}
+.stat dd{font-family:var(--display);font-weight:600;font-size:30px;color:var(--ink);margin:0;line-height:1}
+.hero-map{margin-top:44px;max-width:520px}
+.hero-map img{width:100%;display:block;border-radius:6px;border:1px solid var(--rule)}
+.hero-link{display:inline-block;margin-top:14px;font-family:var(--ui);font-size:17px;font-weight:500;color:var(--pine)}
+
+/* ---- days ---- */
+main{max-width:1140px;margin:0 auto;padding:0 24px 90px}
+.day{padding:56px 0;border-top:1px solid var(--rule)}
+.day-head{margin-bottom:30px}
+.day-date{font-family:var(--ui);font-size:16px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--pine);margin:0 0 12px}
+.day-head h2{font-family:var(--display);font-weight:600;font-size:clamp(30px,4.6vw,46px);line-height:1.08;letter-spacing:-.025em;color:var(--ink);margin:0}
+
+/* signature: the leg rule — origin —— km —— destination */
+.leg{display:flex;align-items:center;gap:12px;margin-top:18px;max-width:720px}
+.leg-end{font-family:var(--ui);font-size:17px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.leg-rule{flex:1 1 auto;height:1px;background:var(--rule);min-width:14px}
+.leg-dist{font-family:var(--mono);font-size:17px;color:var(--pine);white-space:nowrap}
+
+.maps-btn{display:inline-flex;align-items:center;gap:10px;background:var(--pine);color:#fff;text-decoration:none;
+  font-family:var(--ui);font-weight:600;font-size:17px;padding:14px 22px;border-radius:6px;margin-bottom:34px;transition:background .15s}
+.maps-btn:hover,.maps-btn:focus-visible{background:var(--pine-dk)}
+
+.block{margin-bottom:32px}
+.eyebrow{font-family:var(--ui);font-size:15px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}
+.prose{margin:0;max-width:66ch;font-size:19px}
+.stops{list-style:none;margin:0;padding:0;max-width:66ch}
+.stops li{position:relative;padding-left:24px;margin-bottom:14px;font-size:19px}
+.stops li::before{content:"";position:absolute;left:0;top:.78em;width:11px;height:2px;background:var(--pine)}
+.stops b{font-weight:600;color:var(--ink)}
+
+.note{background:var(--ochre-bg);border-radius:6px;padding:20px 24px;margin:0 0 32px;max-width:66ch}
+.note-tag{font-family:var(--ui);font-size:15px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ochre);margin:0 0 10px}
+.note-body{margin:0;font-size:19px;line-height:1.62;color:var(--body)}
+
+.lodging h3{font-family:var(--display);font-weight:600;font-size:26px;letter-spacing:-.015em;color:var(--ink);margin:0 0 10px}
+.ext{display:inline-block;margin-top:12px;font-family:var(--ui);font-size:20px;font-weight:500;color:var(--pine);word-break:break-word}
+
+.shots{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:36px 0 0}
+.shots.one{grid-template-columns:minmax(0,620px)}
+@media (max-width:680px){.shots{grid-template-columns:1fr}}
+.shot{padding:0;border:1px solid var(--rule);background:var(--card);border-radius:6px;overflow:hidden;cursor:zoom-in;display:block}
+.shot img{width:100%;display:block}
+.shot:focus-visible{outline:3px solid var(--pine);outline-offset:3px}
+
+dialog{border:0;padding:0;background:transparent;max-width:96vw}
+dialog::backdrop{background:rgba(25,26,23,.92)}
+dialog img{max-width:96vw;max-height:92vh;display:block;border-radius:6px}
+
+footer{max-width:1140px;margin:0 auto;padding:44px 24px 90px;border-top:2px solid var(--ink)}
+footer p{max-width:66ch;font-size:19px;margin:0 0 18px;color:var(--body)}
+footer b{color:var(--ink);font-weight:600}
+a:focus-visible{outline:3px solid var(--pine);outline-offset:3px}
+
+@media print{
+  .topbar{display:none}
+  body{background:#fff;font-size:11.5pt}
+  .day{break-inside:avoid;page-break-inside:avoid}
+  .maps-btn{background:none;color:#000;padding:0;border:0;font-size:11pt}
+}
+
+/* ---- multi-page additions ---- */
+.nav-page{font-family:var(--ui);font-weight:600;letter-spacing:.02em;font-size:17px}
+.nav-page.is-active{background:var(--pine);color:#fff}
+.nav-sep{flex:0 0 auto;width:1px;height:18px;background:var(--rule);margin:0 8px}
+.page-body{max-width:1140px;margin:0 auto;padding:8px 24px 20px}
+.subhero .stats,.subhero .chain{display:none}
+.subhero h1{font-size:clamp(38px,6.4vw,74px)}
+.guides{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:1140px;margin:0 auto;padding:0 24px 20px}
+@media (max-width:820px){.guides{grid-template-columns:1fr}}
+.guide{display:block;background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:26px 26px 24px;
+  text-decoration:none;color:inherit;transition:border-color .15s,transform .15s}
+.guide:hover,.guide:focus-visible{border-color:var(--pine);transform:translateY(-2px)}
+.guide-eyebrow{font-family:var(--ui);font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--pine);margin:0 0 10px}
+.guide h3{font-family:var(--display);font-weight:600;font-size:27px;letter-spacing:-.02em;color:var(--ink);margin:0 0 8px}
+.guide p{margin:0;font-size:19px;line-height:1.6;color:var(--body)}
+.guide .go{display:inline-block;margin-top:14px;font-family:var(--ui);font-size:17px;font-weight:600;color:var(--pine)}
+.guides-head{max-width:1140px;margin:0 auto;padding:52px 24px 22px;border-top:2px solid var(--ink)}
+.guides-head h2{font-family:var(--display);font-weight:600;font-size:clamp(30px,4.6vw,46px);line-height:1.08;letter-spacing:-.025em;color:var(--ink);margin:0 0 8px}
+.guides-head p{font-size:19px;color:var(--muted);max-width:60ch;margin:0}
+.backlink{max-width:1140px;margin:0 auto;padding:0 24px 70px}
+.spot{font-weight:600;color:var(--ink);text-decoration:none;
+  border-bottom:1.5px solid var(--pine);padding-bottom:1px;transition:color .15s,background .15s}
+.spot:hover,.spot:focus-visible{color:var(--pine)}
+.spot::after{content:"↗";font-size:.72em;vertical-align:super;margin-left:2px;color:var(--pine);border:0}
+.stops li.fig-li{padding-left:24px;margin:14px 0 18px;list-style:none}
+.stops li.fig-li::before{display:none}
+.spot-fig{margin:0;max-width:620px}
+.spot-fig img{width:100%;display:block;border-radius:8px;border:1px solid var(--rule)}
+.spot-fig figcaption{margin-top:9px;font-family:var(--ui);font-size:16px;color:var(--muted)}
+.spot-info{font-family:var(--ui);font-size:13px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;border:1px solid var(--rule);border-radius:3px;
+  padding:1px 5px;margin-left:7px;vertical-align:2px;white-space:nowrap;transition:color .15s,border-color .15s}
+.spot-info:hover,.spot-info:focus-visible{color:var(--pine);border-color:var(--pine)}
+.route-map{margin:22px 0 0;max-width:640px}
+.route-map img{width:100%;display:block;border-radius:8px;border:1px solid var(--rule)}
+.route-map figcaption{margin-top:9px;font-family:var(--ui);font-size:16px;color:var(--muted)}
+.trip-map{margin:40px 0 0;max-width:520px}
+.trip-map img{width:100%;display:block;border-radius:8px;border:1px solid var(--rule)}
+.trip-map a{display:inline-block;margin-top:12px;font-family:var(--ui);font-size:15px;font-weight:600;color:var(--pine)}
+.inn-gallery{display:grid;gap:14px;margin:20px 0 0;max-width:640px}
+.inn-gallery img{width:100%;display:block;border-radius:8px;border:1px solid var(--rule)}
+.inn-shot{margin:0 0 16px;max-width:620px}
+.inn-shot img{width:100%;display:block;border-radius:8px;border:1px solid var(--rule);aspect-ratio:3/2;object-fit:cover;background:var(--card)}
+.backlink a{font-family:var(--ui);font-size:18px;font-weight:600;color:var(--pine)}
+
+/* ---- weather page ---- */
+.fine{font-size:16px;color:var(--muted);margin:14px 0 0;max-width:66ch}
+.sub{font-family:var(--ui);font-size:17px;font-weight:600;color:var(--ink);margin:26px 0 12px}
+.ladder{display:grid;gap:0;max-width:760px;border:1px solid var(--rule);border-radius:8px;background:var(--card);overflow:hidden}
+.rung{display:grid;grid-template-columns:110px 96px 1fr;align-items:baseline;gap:18px;padding:14px 22px;border-top:1px solid var(--rule)}
+.rung:first-child{border-top:0}
+.rung-alt{font-family:var(--mono);font-size:17px;font-weight:500;color:var(--ink)}
+.rung-d{font-family:var(--display);font-size:21px;font-weight:600;color:var(--pine)}
+.rung-note{font-size:17px;color:var(--muted)}
+.wx-wrap{max-width:100%;overflow-x:auto;border:1px solid var(--rule);border-radius:8px;background:var(--card)}
+table.wx{border-collapse:collapse;width:100%;min-width:600px}
+table.wx th{font-family:var(--ui);font-size:14px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);text-align:left;padding:14px 20px;border-bottom:1px solid var(--rule);white-space:nowrap}
+table.wx td{padding:14px 20px;font-size:17px;border-top:1px solid var(--rule);vertical-align:top;line-height:1.45}
+table.wx tbody tr:first-child td{border-top:0}
+.wx-n{color:var(--muted);font-size:16px}
+.wx-d{font-family:var(--ui);font-size:16px;font-weight:600;color:var(--ink);white-space:nowrap}
+.wx-km{display:block;font-family:var(--mono);font-size:14px;color:var(--muted);margin-top:3px}
+.wx-c{font-family:var(--ui);font-size:17px}
+tr.wx-flag{background:var(--ochre-bg)}
+tr.wx-flag .wx-c b{color:var(--ochre)}
+table.wx-days{min-width:860px}
+.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;max-width:1140px;margin:22px 0 8px}
+.lk{display:block;background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:16px 20px;
+  text-decoration:none;color:inherit;transition:border-color .15s,transform .15s}
+.lk:hover{border-color:var(--pine);transform:translateY(-1px)}
+.lk-t{display:block;font-family:var(--ui);font-size:17px;font-weight:600;color:var(--ink);margin-bottom:4px}
+.lk-u{display:block;font-family:var(--mono);font-size:13px;color:var(--muted)}
+.ext-in{color:var(--pine);font-weight:600;text-decoration:none;border-bottom:1.5px solid rgba(47,93,78,.35)}
+@media(max-width:700px){
+  .rung{grid-template-columns:88px 78px;gap:12px}
+  .rung-note{grid-column:1/-1;margin-top:2px}
+}
+
+.rung-i{display:block;font-family:var(--mono);font-size:13px;font-weight:500;color:var(--muted);margin-top:2px;letter-spacing:0}
+.rung{align-items:start}
+.rung-alt,.rung-d{line-height:1.2}
+.wx-f{display:block;font-family:var(--mono);font-size:13px;color:var(--muted);margin-top:3px;white-space:nowrap}
+table.wx-days{min-width:960px}
+@media(max-width:700px){
+  .rung{grid-template-columns:104px 92px;gap:14px}
+}
+
+.rung{grid-template-columns:112px 118px 1fr}
+.rung-head{background:#FBFAF7;padding-top:12px;padding-bottom:12px}
+.rung-head span{font-family:var(--ui);font-size:14px;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);line-height:1.3}
+@media(max-width:700px){
+  .rung{grid-template-columns:104px 96px}
+  .rung-head span:last-child{grid-column:1/-1;margin-top:2px}
+}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="topbar-in"><a class="brand" href="index.html" style="text-decoration:none">Japan 2026</a><nav class="nav" aria-label="Sections"><a class="nav-chip nav-page" href="bikes.html">Bikes</a><a class="nav-chip nav-page" href="signs.html">Road signs</a><a class="nav-chip nav-page" href="riding-left.html">Riding on the left</a><a class="nav-chip nav-page" href="phrases.html">Phrases</a><a class="nav-chip nav-page is-active" href="weather.html">Weather &amp; packing</a><span class="nav-sep"></span><a class="nav-chip nav-page" href="index.html">← Itinerary</a></nav></div></div>
+<div class="hero-wrap">
+<svg class="hero-bg" viewBox="0 0 1440 760" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#BFD2E8"/>
+      <stop offset="46%" stop-color="#DCE4EE"/>
+      <stop offset="78%" stop-color="#F0E9DC"/>
+      <stop offset="100%" stop-color="#F6EFE1"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="12%" cy="88%" r="58%">
+      <stop offset="0%" stop-color="#FFF8E6" stop-opacity="1"/>
+      <stop offset="42%" stop-color="#FDEBC4" stop-opacity=".55"/>
+      <stop offset="100%" stop-color="#FDEBC4" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="cone" x1="0" y1="0" x2="1" y2="0.35">
+      <stop offset="0%" stop-color="#D9C89E"/>
+      <stop offset="30%" stop-color="#B9B49E"/>
+      <stop offset="62%" stop-color="#8C97AC"/>
+      <stop offset="100%" stop-color="#68788F"/>
+    </linearGradient>
+    <linearGradient id="haze" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F6EFE1" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#F6EFE1" stop-opacity=".85"/>
+    </linearGradient>
+    <clipPath id="coneClip"><path d="M-60 760 C340 742 640 580 790 350 C806 320 830 289 852 276 C868 267 884 283 900 285 C916 283 934 265 952 271 C972 279 990 307 1010 350 C1160 580 1380 730 1500 750 L1500 760 Z"/></clipPath>
+    <linearGradient id="ridge" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#9AA7B8"/>
+      <stop offset="100%" stop-color="#7A8AA0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1440" height="760" fill="url(#sky)"/>
+  <rect width="1440" height="760" fill="url(#sun)"/>
+
+  <!-- distant right shoulder -->
+  <path d="M1230 760 Q1350 652 1500 612 L1500 760 Z" fill="url(#ridge)" opacity=".38"/>
+
+  <!-- Fuji: wide low base, gently concave flanks, broad flat-domed summit -->
+  <path d="M-60 760 C340 742 640 580 790 350 C806 320 830 289 852 276 C868 267 884 283 900 285 C916 283 934 265 952 271 C972 279 990 307 1010 350 C1160 580 1380 730 1500 750 L1500 760 Z" fill="url(#cone)"/>
+  <g clip-path="url(#coneClip)">
+    <!-- sunlit western flank -->
+    <path d="M900 262 L600 760 L-100 760 L-100 262 Z" fill="#E7D9B2" opacity=".55"/>
+    <!-- snow cap: every corner sits outside the outline, so the clip alone shapes it -->
+    <path d="M280 180 L1520 180 L1520 512 L1244 518
+             C1192 542 1150 498 1108 522 C1062 546 1020 498 976 520 C932 542 892 494 850 516
+             C808 538 768 490 726 512 C690 530 660 492 618 514 L280 508 Z"
+          fill="#FDFBF6" opacity=".94"/>
+    <!-- shadow in the crater bowl -->
+    <path d="M864 283 C882 295 922 295 940 281 C932 301 876 303 864 283 Z" fill="#9AA3B4" opacity=".3"/>
+    <!-- warm sunrise rim along the western edge -->
+    <path d="M852 276 C830 289 806 320 790 350 C640 580 340 742 -60 760" fill="none" stroke="#FBEBC6" stroke-width="8" opacity=".42" stroke-linecap="round"/>
+  </g>
+
+  <!-- low haze across the base -->
+  <rect y="520" width="1440" height="240" fill="url(#haze)"/>
+
+  <!-- foreground treeline -->
+  <path d="M0 742 Q120 704 240 730 Q360 754 470 726 Q580 700 700 728 Q820 754 940 730 Q1080 702 1200 728 Q1320 752 1440 726 L1440 760 L0 760 Z" fill="#5E6E84" opacity=".28"/>
+</svg>
+<div class="hero-veil"></div>
+<div class="hero-fade"></div>
+<div class="hero subhero">
+  <p class="kicker">Japan Central Alps · October 2026</p>
+  <h1>Weather &amp; packing</h1>
+  <p class="dek">October in Tōhoku is the good half of autumn — dry-ish, clear, the colour coming down the mountains to meet you. The catch is that every forecast number you will read is measured in a valley, and you will not be riding in the valley.</p>
+</div>
+</div>
+<section class="page-body">
+
+  <div class="rule-card">
+    <p class="rule-eyebrow">The one rule</p>
+    <p class="rule-big">Subtract 6&nbsp;°C (11&nbsp;°F) for every 1,000&nbsp;m (3,300&nbsp;ft) you climb — then another 4&nbsp;°C (7&nbsp;°F) for the wind.</p>
+    <p class="rule-sub">Weather stations sit in towns, near the valley floor. Air cools about 6.5&nbsp;°C (12&nbsp;°F) for every 1,000&nbsp;m (3,300&nbsp;ft) of altitude, and riding at 80&nbsp;km/h (50&nbsp;mph) strips off roughly another 4–5&nbsp;°C (7–9&nbsp;°F) of apparent warmth. A forecast of 16&nbsp;°C (61&nbsp;°F) in Morioka is about 6&nbsp;°C (43&nbsp;°F) at the top of a 1,500&nbsp;m (4,900&nbsp;ft) pass, and feels like 1&nbsp;°C (34&nbsp;°F) through the vents. This is the gap that catches people out: they read the number, pack for the number, and freeze at the summit.</p>
+  </div>
+
+  <aside class="note">
+    <p class="note-tag">Ignore the 14-day forecast</p>
+    <p class="note-body">Real forecast skill runs about seven days. Any site showing you a day-by-day number for two weeks out is generating a plausible-looking pattern, not predicting weather — and some serve stale data outright. Use the normals above for packing decisions, and wait for the real forecast to come into range before changing any plans.</p>
+  </aside>
+
+  <p class="grp">The cold, day by day</p>
+  <p class="prose">These are the regional October normals, adjusted where the night's lodging itself sits high. The right-hand column is the number that matters: what the exposed part of the day actually feels like.</p>
+  <div class="wx-wrap">
+  <table class="wx wx-days">
+    <thead><tr><th>Date</th><th>Leg</th><th>Destination high / low</th><th>High ground</th><th>Coldest it will feel</th></tr></thead>
+    <tbody>
+      <tr><td class="wx-d">Mon 10/5</td><td>Tokyo → Shima Onsen<span class="wx-km">179 km (111 mi)</span></td><td>21/14 → 16/9 °C<span class="wx-f">70/57 → 61/48 °F</span></td><td><b>1,084 m</b> Lake Haruna, Route 28<span class="wx-f">3,556 ft</span></td><td class="wx-c">9 °C (48 °F) arriving late</td></tr>
+      <tr class="wx-flag"><td class="wx-d">Tue 10/6</td><td>Shima Onsen → Sanjo<span class="wx-km">242 km (150 mi)</span></td><td>16/9 → 20/12 °C<span class="wx-f">61/48 → 68/54 °F</span></td><td><b>2,172 m</b> Shibu Pass, R292<span class="wx-f">7,126 ft</span></td><td class="wx-c"><b>0–5 °C (32–41 °F) at the top</b></td></tr>
+      <tr><td class="wx-d">Wed 10/7</td><td>Sanjo → Zaō (Kaminoyama)<span class="wx-km">181 km (113 mi)</span></td><td>20/12 → 19/10 °C<span class="wx-f">68/54 → 66/50 °F</span></td><td>Sea level to basin; Zaō towers above</td><td class="wx-c">10 °C (50 °F) at dawn</td></tr>
+      <tr><td class="wx-d">Thu 10/8</td><td>Zaō → Nikaho Onsen<span class="wx-km">206 km (128 mi)</span></td><td>19/10 → 19/11 °C<span class="wx-f">66/50 → 66/52 °F</span></td><td>Basin to Sea of Japan coast</td><td class="wx-c">10 °C (50 °F) at dawn</td></tr>
+      <tr><td class="wx-d">Fri 10/9</td><td>Nikaho → Iwate (Shizukuishi)<span class="wx-km">156 km (97 mi)</span></td><td>19/11 → 16/8 °C<span class="wx-f">66/52 → 61/46 °F</span></td><td>Over the Ōu range, 600–800 m<span class="wx-f">2,000–2,600 ft</span></td><td class="wx-c">5 °C (41 °F) on the tops</td></tr>
+      <tr class="wx-flag"><td class="wx-d">Sat 10/10</td><td>Golf — Hachimantai CC<span class="wx-km">no riding</span></td><td>16/8 °C<span class="wx-f">61/46 °F</span></td><td>Foothills, 8:59 tee</td><td class="wx-c"><b>8 °C (46 °F) on the first tee</b></td></tr>
+      <tr><td class="wx-d">Sun 10/11</td><td>Shizukuishi → Naruko Onsen<span class="wx-km">175 km (108 mi)</span></td><td>16/8 → 18/9 °C<span class="wx-f">61/46 → 64/48 °F</span></td><td>Naruko Gorge, 300 m<span class="wx-f">1,000 ft</span></td><td class="wx-c">8 °C (46 °F) at dawn</td></tr>
+      <tr><td class="wx-d">Mon 10/12</td><td>Naruko → Kaminoyama Onsen<span class="wx-km">196 km (122 mi)</span></td><td>18/9 → 19/10 °C<span class="wx-f">64/48 → 66/50 °F</span></td><td>Shortest day, back roads</td><td class="wx-c">9 °C (48 °F) at dawn</td></tr>
+      <tr><td class="wx-d">Tue 10/13</td><td>Kaminoyama → Aizu<span class="wx-km">158 km (98 mi)</span></td><td>19/10 → 19/9 °C<span class="wx-f">66/50 → 66/48 °F</span></td><td>Rolling, some 600 m ground<span class="wx-f">2,000 ft</span></td><td class="wx-c">6 °C (43 °F) on the tops</td></tr>
+      <tr><td class="wx-d">Wed 10/14</td><td>Aizu → Yunishigawa Onsen<span class="wx-km">188 km (117 mi)</span></td><td>19/9 → 15/7 °C<span class="wx-f">66/48 → 59/45 °F</span></td><td>Ōuchi-juku 650 m, inn at 700 m<span class="wx-f">2,100 ft / 2,300 ft</span></td><td class="wx-c">7 °C (45 °F) arriving</td></tr>
+      <tr class="wx-flag"><td class="wx-d">Thu 10/15</td><td>Yunishigawa → Tokyo<span class="wx-km">237 km (147 mi)</span></td><td>15/7 → 21/14 °C<span class="wx-f">59/45 → 70/57 °F</span></td><td>700 m down to sea level<span class="wx-f">2,300 ft</span></td><td class="wx-c"><b>7 °C (45 °F) start, 21 °C (70 °F) finish</b></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="prose fine">Temperatures and elevations in the table are approximate. Three days do the work: <b>10/6</b> crosses Shibu Pass at 2,172 m (7,126 ft), the highest point on any national road in Japan and by a wide margin the coldest riding of the trip, <b>10/10</b> is the coldest standing still, and <b>10/15</b> swings 14 °C (25 °F) from first gear to the hotel. Everything else is a jacket-liner decision, not a problem.</p>
+
+  <aside class="note">
+    <p class="note-tag">Typhoons</p>
+    <p class="note-body">Season runs May to October and peaks in August and September, so you are riding the tail end — but late-season storms tend to be <i>stronger</i> than early ones, and about three reach the main islands in a typical year. A mid-October typhoon is uncommon rather than rare. It is the one weather event that could force you to rework a day, and there is nothing to do about it now except know it exists and watch the forecast from about a week out.</p>
+  </aside>
+
+  <p class="grp">When to check, and where</p>
+  <ul class="stops">
+    <li><b>Around 1 October.</b> First genuinely useful read on arrival and the opening riding days.</li>
+    <li><b>Around 7 October.</b> The second half of the trip comes into forecast range. This is when a typhoon, if there is one, would show up.</li>
+    <li><b>Every evening on the road.</b> Tomorrow's mountain weather, before you commit to a pass. Pair it with the road-closure links on the <a class="ext-in" href="bikes.html">Bikes page</a> — in October, closures are more likely than storms.</li>
+  </ul>
+  <div class="links">
+    <a class="lk" href="https://www.jma.go.jp/bosai/#lang=en&amp;pattern=forecast" target="_blank" rel="noopener"><span class="lk-t">JMA forecast portal</span><span class="lk-u">jma.go.jp · English, by region ↗</span></a>
+    <a class="lk" href="https://www.jma.go.jp/bosai/#lang=en" target="_blank" rel="noopener"><span class="lk-t">JMA warnings</span><span class="lk-u">jma.go.jp · active advisories ↗</span></a>
+    <a class="lk" href="https://www.jma.go.jp/bosai/map.html#contents=himawari&amp;lang=en" target="_blank" rel="noopener"><span class="lk-t">Himawari satellite</span><span class="lk-u">jma.go.jp · see the system coming ↗</span></a>
+    <a class="lk" href="https://www.jma.go.jp/jma/jma-eng/jma-center/rsmc-hp-pub-eg/RSMC_HP.htm" target="_blank" rel="noopener"><span class="lk-t">RSMC Tokyo Typhoon Center</span><span class="lk-u">jma.go.jp · tracks and forecasts ↗</span></a>
+    <a class="lk" href="https://www.jma.go.jp/jma/indexe.html" target="_blank" rel="noopener"><span class="lk-t">JMA English home</span><span class="lk-u">jma.go.jp · everything else ↗</span></a>
+  </div>
+
+  <p class="grp">What to pack</p>
+  <p class="prose">One trip spans 21 °C (70 °F) Tokyo afternoons and near-freezing dawns at 1,100 m (3,600 ft). Layers solve that; a single warm jacket does not.</p>
+
+  <p class="sub">On the bike</p>
+  <ul class="stops">
+    <li><b>A three-season jacket with the thermal liner.</b> Not a mesh summer jacket. The liner comes out for the Tokyo end and goes back in for Mikuni and Hachimantai.</li>
+    <li><b>Two pairs of gloves.</b> One warm, one lighter — and critically, so that a soaked pair has a day to dry. Wet gloves on a cold morning ruin a good road.</li>
+    <li><b>A neck tube.</b> The highest warmth-per-gram item you can carry. A cold draught at the collar undoes a good jacket.</li>
+    <li><b>A one-piece rain suit</b> that goes on <i>over</i> everything, plus waterproof overgloves. Better than trusting a jacket's own membrane, and far quicker at the roadside.</li>
+    <li><b>Waterproof boots.</b> Boots that get soaked on 10/6 are still damp on 10/9. This is the item people regret.</li>
+    <li><b>A Pinlock or anti-fog visor insert.</b> Cool mornings plus rain plus breath equals a fogged visor exactly when you need to see a wet apex.</li>
+    <li><b>Ask Ninja Tours about heated grips</b> on Jenifer and Dobi. On the two cold mornings they are worth more than any layer.</li>
+  </ul>
+
+  <p class="sub">Off the bike</p>
+  <ul class="stops">
+    <li><b>Pack light for evenings.</b> Every ryokan on this trip provides yukata, towels and toiletries. You need very little beyond a change of clothes and something for the feet.</li>
+    <li><b>Cash.</b> Onsen towns and small restaurants are still often cash-only. 7-Eleven ATMs take foreign cards reliably.</li>
+    <li><b>Consider <i>takuhaibin</i> luggage forwarding.</b> Send the city clothes ahead to the last Tokyo hotel instead of carrying them over eleven days of mountain roads.</li>
+    <li><b>Sunscreen.</b> A low October sun at altitude, on a clear day, for six hours, with only your face exposed.</li>
+    <li><b>For the golf day:</b> the club provides sets and shoes. Bring a glove and a windproof layer — an 8:59 tee time in the Hachimantai foothills is the coldest you will be standing still all trip.</li>
+  </ul>
+
+  <aside class="note">
+    <p class="note-tag">The good news</p>
+    <p class="note-body">October is one of the two best months to ride in Japan. The summer humidity has gone, the roads are dry more often than not, and the autumn colour is coming down off the high ground exactly as you cross it. Pack for a cold morning and a warm afternoon and you will spend eleven days in the best weather Tōhoku offers.</p>
+  </aside>
+
+</section>
+<div class="backlink"><a href="index.html">← Back to the itinerary</a></div>
+</body>
+</html>
